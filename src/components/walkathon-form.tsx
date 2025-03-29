@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { walkathonSchema, type WalkathonFormValues } from "@/lib/form-schemas";
+import { Button } from "@/components/ui/button";
 
 export default function WalkathonForm() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -43,21 +44,21 @@ export default function WalkathonForm() {
   return (
     <div className="max-w-md mx-auto p-4">
       {submitSuccess ? (
-        <div className="bg-bw dark:bg-bw rounded-custom p-6 shadow-custom border border-border text-center">
+        <div className="bg-bw rounded-base p-6 shadow-shadow border border-border text-center">
           <h3 className="text-xl font-bold mb-4">Registration Successful!</h3>
           <p className="mb-4">Thank you for registering for the event.</p>
-          <button
+          {/* <button
             className="bg-main text-mtext font-base py-2 px-4 rounded-custom shadow-custom border border-border"
             onClick={() => setSubmitSuccess(false)}
           >
             Register Another
-          </button>
+          </button> */}
         </div>
       ) : (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="bg-bw dark:bg-bw rounded-custom p-6 shadow-custom border border-border space-y-6"
+            className="rounded-base p-6 shadow-shadow border border-border space-y-6 bg-bw"
           >
             <FormField
               control={form.control}
@@ -66,7 +67,7 @@ export default function WalkathonForm() {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder="John Doe" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +98,7 @@ export default function WalkathonForm() {
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" {...field} />
+                    <Input type="tel" {...field} placeholder="1234567890" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -111,20 +112,24 @@ export default function WalkathonForm() {
                 <FormItem>
                   <FormLabel>Email ID</FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} />
+                    <Input
+                      type="email"
+                      {...field}
+                      placeholder="name@email.com"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <button
+            <Button
               type="submit"
-              className="bg-main text-mtext font-base py-2 px-4 rounded-custom shadow-custom border border-border w-full"
+              className="font-base py-6 px-4 w-full"
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? "Submitting..." : "Register"}
-            </button>
+            </Button>
           </form>
         </Form>
       )}

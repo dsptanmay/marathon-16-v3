@@ -13,7 +13,7 @@ export const masterTable = pgTable("master", {
   id: uuid("id").primaryKey().defaultRandom(),
   unique_code: text("unique_code").notNull(),
   name: text("name").notNull(),
-  email: text("email"),
+  email: text("email").notNull(),
   phone_no: text("phone_no").notNull(),
   usn: text("usn"),
   category: categoryEnum("category").notNull(),
