@@ -10,13 +10,20 @@ export const participantsHandler = new Hono().post(
   async (c) => {
     const body = c.req.valid("json");
 
-    await db.insert(masterTable).values({
-      name: body.fullName,
-      phone_no: body.phoneNumber,
-      email: body.emailId,
-      unique_code: body.uniqueCode,
-      usn: body.usn,
-      category: "boys",
-    });
+    const res = await db
+      .insert(masterTable)
+      .values({
+        name: body.fullName,
+        phone_no: body.phoneNumber,
+        email: body.emailId,
+        unique_code: body.uniqueCode,
+        usn: body.usn,
+        category: "boys",
+      })
+      .returning();
+    if (res.length === 0)
+      return c.json({ error: "Unable to register participant" }, 400);
+
+    return c.json({ data: res[0] }, 201);
   }
 );
