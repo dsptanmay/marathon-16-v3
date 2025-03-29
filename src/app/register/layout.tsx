@@ -1,6 +1,5 @@
-import Footer from "@/components/footer";
 import Header from "@/components/header";
-import React from "react";
+import Footer from "@/components/footer";
 
 export default function RegisterLayout({
   children,
@@ -8,9 +7,9 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col bg-bg">
       <Header />
-      <main className="flex-1 overflow-y-auto w-full">{children}</main>
+      <main className="flex-1 p-6">{children}</main>
       <Footer />
     </div>
   );
