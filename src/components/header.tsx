@@ -1,12 +1,21 @@
-import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import fakeLogo from "../../public/fake-logo.svg";
 
-function Header() {
+export function Header() {
   return (
-    <header className="flex items-center justify-between p-4 bg-gray-100 w-full drop-shadow-md">
-      <div className="text-2xl font-semibold">Marathon 16.0</div>
-      <div className="w-10 h-10 bg-blue-500 rounded-full"></div> {/* Logo */}
+    <header className="bg-main text-mtext py-4 px-6 flex flex-col sm:flex-row justify-between items-center shadow-md gap-4">
+      <Link href="/" className="text-2xl font-heading">
+        Marathon 16.0
+      </Link>
+      <div className="h-10 w-32 relative">
+        <Image
+          src={fakeLogo}
+          alt="Sponsor Logo"
+          fill
+          className="object-contain"
+        />
+      </div>
     </header>
   );
 }
-
-export default Header;
