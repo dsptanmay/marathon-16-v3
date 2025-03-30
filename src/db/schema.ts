@@ -6,7 +6,7 @@ import {
   uuid,
   pgEnum,
 } from "drizzle-orm/pg-core";
-import { createInsertSchema, CreateInsertSchema } from "drizzle-zod";
+import { createInsertSchema } from "drizzle-zod";
 
 export const categoryEnum = pgEnum("category", ["girls", "boys", "walkathon"]);
 

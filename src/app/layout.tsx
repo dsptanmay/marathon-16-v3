@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import Providers from "@/components/providers";
 
 const font = DM_Sans({
   weight: ["500", "800"],
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} antialiased`}>
-        <main>{children}</main>
+        <main>
+          <Providers>{children}</Providers>
+        </main>
         <Toaster />
       </body>
     </html>

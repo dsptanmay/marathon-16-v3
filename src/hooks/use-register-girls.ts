@@ -4,15 +4,15 @@ import { InferRequestType, InferResponseType } from "hono";
 import { toast } from "sonner";
 
 type ResponseType = InferResponseType<
-  typeof api.register.boys.$post,
+  typeof api.register.girls.$post,
   201
 >["data"];
-type RequestType = InferRequestType<typeof api.register.boys.$post>["json"];
+type RequestType = InferRequestType<typeof api.register.girls.$post>["json"];
 
-export const useRegisterBoys = () => {
+export const useRegisterGirls = () => {
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (data) => {
-      const response = await api.register.boys.$post({ json: data });
+      const response = await api.register.girls.$post({ json: data });
       if (!response.ok) throw new Error("Failed to register participant");
       const res = await response.json();
       return res.data;
