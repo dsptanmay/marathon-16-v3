@@ -3,7 +3,7 @@ import { handle } from "hono/vercel";
 import { countHandler } from "./counts";
 import { participantsHandler } from "./participants";
 
-const app = new Hono().basePath("/api");
+const app = new Hono({ strict: false }).basePath("/api");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes = app

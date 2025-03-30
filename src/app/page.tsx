@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 function HomePage() {
   const router = useRouter();
@@ -79,7 +80,8 @@ function HomePage() {
                 variant={"noShadow"}
                 className="py-8 font-base text-base"
                 onClick={() => {
-                  router.push("/get-certificate");
+                  // router.push("/get-certificate");
+                  toast.success("Test");
                 }}
               >
                 Get Certificate

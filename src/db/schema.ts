@@ -6,6 +6,7 @@ import {
   uuid,
   pgEnum,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, CreateInsertSchema } from "drizzle-zod";
 
 export const categoryEnum = pgEnum("category", ["girls", "boys", "walkathon"]);
 
@@ -19,4 +20,9 @@ export const masterTable = pgTable("master", {
   category: categoryEnum("category").notNull(),
   crossTime: timestamp("crossTime", { withTimezone: true }).defaultNow(),
   isSitian: boolean("isSitian").default(false),
+});
+
+export const InsertParticipantSchema = createInsertSchema(masterTable).omit({
+  id: true,
+  crossTime: true,
 });
