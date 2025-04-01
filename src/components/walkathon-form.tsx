@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -15,6 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { walkathonSchema, type WalkathonFormValues } from "@/lib/form-schemas";
 import { Button } from "@/components/ui/button";
 import { useRegisterWalkathon } from "@/hooks/use-register-walkathon";
+
+function RequiredLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div>
+      {children} <span className="text-rose-500">*</span>
+    </div>
+  );
+}
 
 export default function WalkathonForm() {
   const {
@@ -36,7 +44,6 @@ export default function WalkathonForm() {
   });
 
   const onSubmit = async (data: WalkathonFormValues) => {
-    // Simulate API call
     registerParticipant({
       email: data.emailId,
       name: data.fullName,
@@ -68,7 +75,10 @@ export default function WalkathonForm() {
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel>
+                    <RequiredLabel>Full Name</RequiredLabel>
+                  </FormLabel>
+
                   <FormControl>
                     <Input {...field} placeholder="John Doe" />
                   </FormControl>
@@ -82,7 +92,9 @@ export default function WalkathonForm() {
               name="uniqueCode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Unique Code</FormLabel>
+                  <FormLabel>
+                    <RequiredLabel>Unique Code</RequiredLabel>
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="12345A" {...field} />
                   </FormControl>
@@ -96,7 +108,9 @@ export default function WalkathonForm() {
               name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
+                  <FormLabel>
+                    <RequiredLabel>Phone Number</RequiredLabel>
+                  </FormLabel>
                   <FormControl>
                     <Input type="tel" {...field} placeholder="1234567890" />
                   </FormControl>
@@ -110,7 +124,9 @@ export default function WalkathonForm() {
               name="emailId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email ID</FormLabel>
+                  <FormLabel>
+                    <RequiredLabel>Email ID</RequiredLabel>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -125,7 +141,7 @@ export default function WalkathonForm() {
 
             <Button
               type="submit"
-              className="font-base py-6 px-4 w-full"
+              className="text-base py-6 px-4 w-full"
               variant={"noShadow"}
               disabled={form.formState.isSubmitting}
             >
