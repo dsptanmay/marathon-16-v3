@@ -63,5 +63,15 @@ export const participantsHandler = new Hono()
     ),
     async (c) => {
       const body = c.req.valid("json");
+
+      const res = await db
+        .insert(masterTable)
+        .values({ ...body, category: "walkathon", usn: null, isSitian: null })
+        .returning();
+
+      if (res.length === 0)
+        return c.json({ error: "Unable to register participant" }, 400);
+
+      return c.json({ data: res[0] }, 201);
     }
   );
