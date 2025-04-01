@@ -50,4 +50,18 @@ export const participantsHandler = new Hono()
 
       return c.json({ data: res[0] }, 201);
     }
+  )
+  .post(
+    "/walkathon",
+    zValidator(
+      "json",
+      InsertParticipantSchema.omit({
+        category: true,
+        usn: true,
+        isSitian: true,
+      })
+    ),
+    async (c) => {
+      const body = c.req.valid("json");
+    }
   );

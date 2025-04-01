@@ -15,6 +15,7 @@ import { marathonSchema, type MarathonFormValues } from "@/lib/form-schemas";
 import { Button } from "@/components/ui/button";
 import { useRegisterBoys } from "@/hooks/use-register-boys";
 import { useRegisterGirls } from "@/hooks/use-register-girls";
+import { useRouter } from "next/navigation";
 
 function TextLabel({
   children,
@@ -32,6 +33,7 @@ function TextLabel({
 }
 
 export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
+  const router = useRouter();
   const {
     mutate: registerBoys,
     status: regBoysStatus,
@@ -78,6 +80,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
         usn: data.usn,
         isSitian,
       });
+      if (regBoysStatus === "success") router.push("/");
     } else if (type === "Girls") {
       registerGirls({
         name: data.fullName,
@@ -93,8 +96,8 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
 
   if (regBoysError) {
     return (
-      <div className="p-6 flex flex-col">
-        <h1>Failed to register participant!</h1>
+      <div className="p-6 flex flex-col bg-bg rounded-base border-2 border-border text-center">
+        <h1 className="text-xl font-bold">Failed to register participant!</h1>
         <h2>{regBoysError.message}</h2>
       </div>
     );
