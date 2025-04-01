@@ -5,9 +5,9 @@ import { InferRequestType, InferResponseType } from "hono";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-const $post = api.register.girls.$post;
-type ResponseType = InferResponseType<typeof $post, 201>["data"];
-type RequestType = InferRequestType<typeof $post>["json"];
+type $post = typeof api.register.girls.$post;
+type ResponseType = InferResponseType<$post, 201>["data"];
+type RequestType = InferRequestType<$post>["json"];
 
 export const useRegisterGirls = () => {
   const router = useRouter();

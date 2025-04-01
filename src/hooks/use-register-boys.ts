@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import axios from "axios";
 
-const $post = api.register.boys.$post;
-type ResponseType = InferResponseType<typeof $post, 201>["data"];
-type RequestType = InferRequestType<typeof $post>["json"];
+type $post = typeof api.register.boys.$post;
+type ResponseType = InferResponseType<$post, 201>["data"];
+type RequestType = InferRequestType<$post>["json"];
 
 export const useRegisterBoys = () => {
   const router = useRouter();
