@@ -69,7 +69,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
     // return;
     let isSitian: boolean | null = null;
     if (data.usn) {
-      isSitian = data.usn.startsWith("1SI");
+      isSitian = data.usn.toUpperCase().startsWith("1SI");
     }
     if (type === "Boys") {
       registerBoys({
@@ -115,7 +115,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="bg-bg p-6 shadow-none border border-border space-y-6 rounded-base"
+          className="bg-bg p-6 shadow-none border-2 border-border space-y-6 rounded-base"
         >
           <div className="flex flex-col text-center">
             <h1 className="text-xl font-bold">Registration for {type}</h1>

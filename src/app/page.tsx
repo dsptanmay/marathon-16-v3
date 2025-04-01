@@ -18,11 +18,11 @@ function HomePage() {
   const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
-      <header className="bg-bg border-border border-b-2 text-mtext py-4 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
+      <header className="bg-bg border-border border-b-2 text-mtext py-2 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
         <Link href="/" className="text-xl font-heading">
           Marathon 16.0
         </Link>
-        <div className="size-14 relative">
+        <div className="size-20 relative">
           <Image
             src={fakeLogo}
             alt="Sponsor Logo"

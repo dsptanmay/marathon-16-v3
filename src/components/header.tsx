@@ -4,7 +4,7 @@ import fakeLogo from "../../public/fake-logo.svg";
 
 export default function Header() {
   return (
-    <header className="bg-bg text-mtext py-4 px-6 flex flex-col sm:flex-row justify-between items-center border-border border-b-2 gap-4">
+    <header className="bg-bg text-mtext py-4 px-6 flex flex-col sm:flex-row justify-between items-center border-border border-b-2 gap-4 w-full">
       <Link href="/" className="text-2xl font-heading">
         Marathon 16.0
       </Link>
