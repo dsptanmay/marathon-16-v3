@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  output: "standalone",
 };
 
 export default nextConfig;
