@@ -18,7 +18,7 @@ import { useRegisterWalkathon } from "@/hooks/use-register-walkathon";
 
 function RequiredLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="text-base">
       {children} <span className="text-rose-500">*</span>
     </div>
   );
@@ -55,7 +55,7 @@ export default function WalkathonForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div>
       {submitSuccess ? (
         <div className="bg-bg rounded-base p-6 shadow-none border border-border text-center">
           <h3 className="text-xl font-bold mb-4">Registration Successful!</h3>
@@ -65,10 +65,11 @@ export default function WalkathonForm() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="rounded-base p-6 shadow-none border-2 border-border space-y-6 bg-bg"
+            className="w-full rounded-base p-6 shadow-none border-2 border-border space-y-6 bg-bg"
           >
             <div className="text-center mb-3 mt-3">
               <h1 className="text-2xl font-heading">Walkathon Registration</h1>
+              <h2>Enter details here</h2>
             </div>
             <FormField
               control={form.control}

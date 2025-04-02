@@ -2,7 +2,7 @@ import WalkathonForm from "@/components/walkathon-form";
 
 export default function WalkathonRegistrationPage() {
   return (
-    <div className="max-w-md mx-auto">
+    <div className="p-6 w-full lg:max-w-md">
       <WalkathonForm />
     </div>
   );

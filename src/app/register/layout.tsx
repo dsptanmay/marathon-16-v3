@@ -7,9 +7,11 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main>{children}</main>
+      <main className="flex-1 flex items-center justify-center">
+        {children}
+      </main>
       <Footer />
     </div>
   );
