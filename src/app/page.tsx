@@ -32,7 +32,7 @@ function HomePage() {
       </header>
       <div className="grow flex flex-col justify-evenly lg:py-5 py-4 px-10 w-full lg:max-w-lg">
         <Card className="bg-bg mb-4 lg:mb-0">
-          <CardHeader>
+          <CardHeader className="text-center">
             <CardTitle>Registrations</CardTitle>
             <CardDescription>Register for the marathon</CardDescription>
           </CardHeader>
@@ -67,7 +67,7 @@ function HomePage() {
           </CardContent>
         </Card>
         <Card className="bg-bg">
-          <CardHeader>
+          <CardHeader className="text-center">
             <CardTitle>Certificate</CardTitle>
             <CardDescription>Download the Certificate</CardDescription>
           </CardHeader>
