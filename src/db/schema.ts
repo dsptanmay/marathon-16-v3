@@ -18,7 +18,7 @@ export const masterTable = pgTable("master", {
   phone_no: text("phone_no").notNull(),
   usn: text("usn"),
   category: categoryEnum("category").notNull(),
-  crossTime: timestamp("crossTime", { withTimezone: true }).defaultNow(),
+  crossTime: timestamp("crossTime", { withTimezone: true }),
   isSitian: boolean("isSitian").default(false),
 });
 

@@ -8,6 +8,13 @@
       "when": 1743243524441,
       "tag": "0000_true_rhodey",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1743619056748,
+      "tag": "0001_good_frog_thor",
+      "breakpoints": true
     }
   ]
 }

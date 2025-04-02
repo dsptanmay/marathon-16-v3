@@ -1,0 +1,1 @@
+ALTER TABLE "master" ALTER COLUMN "crossTime" DROP DEFAULT;
