@@ -1,6 +1,6 @@
 import { AppType } from "@/app/api/[[...route]]/route";
 import { hc } from "hono/client";
 
-const client = hc<AppType>(process.env.VERCEL_URL!);
+const client = hc<AppType>("http://localhost:3000");
 
 export const api = client.api;

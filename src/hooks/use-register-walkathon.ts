@@ -13,18 +13,10 @@ export const useRegisterWalkathon = () => {
   const router = useRouter();
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async function (data) {
-      const response = await axios.post<ResponseType>(
-        "/api/register/walkathon",
-        JSON.stringify(data),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status !== 201)
-        throw new Error("Failed to regiser participant!");
-      return response.data;
+      const response = await api.register.walkathon.$post({ json: data });
+      if (!response.ok) throw new Error("Failed to register participant!");
+      const res = await response.json();
+      return res.data;
     },
     onSuccess: (data, variables) => {
       toast.success(

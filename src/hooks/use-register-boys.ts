@@ -13,20 +13,10 @@ export const useRegisterBoys = () => {
   const router = useRouter();
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async function (data) {
-      const response = await axios.post<ResponseType>(
-        "/api/register/boys",
-        JSON.stringify(data),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status !== 201)
-        throw new Error(
-          `Failed to register participant! ${response.statusText}`
-        );
-      return response.data;
+      const response = await api.register.boys.$post({ json: data });
+      if (!response.ok) throw new Error("Failed to register participant!");
+      const res = await response.json();
+      return res.data;
     },
     onSuccess: (data, variables) => {
       toast.success(
