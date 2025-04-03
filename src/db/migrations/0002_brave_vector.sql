@@ -1,0 +1,1 @@
+ALTER TABLE "master" ADD CONSTRAINT "master_unique_code_unique" UNIQUE("unique_code");

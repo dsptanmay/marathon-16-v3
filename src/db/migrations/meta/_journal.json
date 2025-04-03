@@ -15,6 +15,13 @@
       "when": 1743619056748,
       "tag": "0001_good_frog_thor",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1743651499559,
+      "tag": "0002_brave_vector",
+      "breakpoints": true
     }
   ]
 }
