@@ -116,9 +116,9 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
         console.log(result);
         if (isValidQRFormat(decodedText)) {
           try {
-            await onScanAction(decodedText);
-            // Auto-stop scanner after successful scan
-            await stopScanner();
+            await onScanAction(decodedText).then(() => {
+              stopScanner();
+            });
           } catch (err) {
             console.error("Error processing scan:", err);
             setError(
@@ -170,12 +170,8 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
       scannerRef.current &&
       scannerRef.current.getState() === Html5QrcodeScannerState.SCANNING
     ) {
-      try {
-        await scannerRef.current.stop();
-        setIsScanning(false);
-      } catch (error) {
-        console.error("Error stopping scanner:", error);
-      }
+      await scannerRef.current.stop();
+      setIsScanning(false);
     }
   };
 

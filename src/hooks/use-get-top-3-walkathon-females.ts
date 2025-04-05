@@ -7,7 +7,7 @@ type ResponseType = InferResponseType<
   200
 >;
 
-export const useGetTop10WalkathonFemales = () => {
+export const useGetTop3WalkathonFemales = () => {
   const query = useQuery<ResponseType, Error>({
     queryKey: ["get-top-3-walkathon_f"],
     queryFn: async () => {
