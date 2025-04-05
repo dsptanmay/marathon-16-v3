@@ -8,7 +8,12 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
-export const categoryEnum = pgEnum("category", ["girls", "boys", "walkathon"]);
+export const categoryEnum = pgEnum("category", [
+  "girls",
+  "boys",
+  "walkathon_m",
+  "walkathon_f",
+]);
 
 export const masterTable = pgTable("master", {
   id: uuid("id").primaryKey().defaultRandom(),
