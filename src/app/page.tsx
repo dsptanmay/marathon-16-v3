@@ -18,7 +18,7 @@ function HomePage() {
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
       <header className="bg-bg border-border border-b-2 text-mtext py-2 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
-        <Link href="/" className="text-xl font-heading">
+        <Link href="/" className="text-xl font-heading mt-2 lg:mt-0">
           Marathon 16.0
         </Link>
         <div className="size-20 relative">
