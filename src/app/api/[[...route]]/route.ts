@@ -1,12 +1,15 @@
 import { Hono } from "hono";
-import { pinoLogger as logger } from "hono-pino";
-import { requestId } from "hono/request-id";
+
 import pino from "pino";
 import pretty from "pino-pretty";
+import { pinoLogger as logger } from "hono-pino";
+
 import { handle } from "hono/vercel";
-import { countHandler } from "./counts";
-import { participantsHandler } from "./participants";
+import { requestId } from "hono/request-id";
+
 import utilsHandler from "./utils";
+import { countHandler } from "./counts";
+import { participantsHandler } from "./register";
 
 const app = new Hono({ strict: false })
   .basePath("/api")
