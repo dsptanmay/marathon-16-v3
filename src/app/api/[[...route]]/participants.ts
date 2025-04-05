@@ -34,11 +34,10 @@ const participantsHandler = new Hono()
       .where(eq(masterTable.category, "girls"))
       .orderBy(masterTable.crossTime)
       .limit(20);
-
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
-  .get("/top10/walkathon", async (c) => {
+  .get("/top3/walkathon_males", async (c) => {
     const res = await db
       .select({
         unique_code: masterTable.unique_code,
@@ -48,9 +47,26 @@ const participantsHandler = new Hono()
         time_crossed: masterTable.crossTime,
       })
       .from(masterTable)
-      .where(eq(masterTable.category, "walkathon"))
+      .where(eq(masterTable.category, "walkathon_m"))
       .orderBy(masterTable.crossTime)
-      .limit(10);
+      .limit(3);
+
+    if (res.length === 0) return c.json({ error: "No records found!" }, 404);
+    return c.json({ data: res }, 200);
+  })
+  .get("/top3/walkathon_females", async (c) => {
+    const res = await db
+      .select({
+        unique_code: masterTable.unique_code,
+        name: masterTable.name,
+        email: masterTable.email,
+        phone_no: masterTable.phone_no,
+        time_crossed: masterTable.crossTime,
+      })
+      .from(masterTable)
+      .where(eq(masterTable.category, "walkathon_f"))
+      .orderBy(masterTable.crossTime)
+      .limit(3);
 
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
