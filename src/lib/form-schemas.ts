@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isValidCode } from "./utils";
 
 // Base schema for common fields
 const baseSchema = z.object({
@@ -9,23 +10,7 @@ const baseSchema = z.object({
     .max(6, "Unique code must be 6 characters")
     .refine(
       (code) => {
-        // Check if first 5 characters are digits
-        const digits = code.substring(0, 5);
-        if (!/^\d{5}$/.test(digits)) return false;
-
-        // Check if last character is uppercase letter
-        const letter = code.substring(5, 6);
-        if (!/^[A-Z]$/.test(letter)) return false;
-
-        // Calculate the expected letter
-        const sum = Array.from(digits).reduce(
-          (acc, digit) => acc + Number.parseInt(digit),
-          0
-        );
-        const remainder = sum % 26;
-        const expectedLetter = String.fromCharCode(65 + remainder); // 65 is ASCII for 'A'
-
-        return letter === expectedLetter;
+        return isValidCode(code);
       },
       {
         message: "Invalid unique code format",
@@ -57,23 +42,7 @@ export const certificateSchema = z.object({
     .max(6, "Unique code must be 6 characters")
     .refine(
       (code) => {
-        // Check if first 5 characters are digits
-        const digits = code.substring(0, 5);
-        if (!/^\d{5}$/.test(digits)) return false;
-
-        // Check if last character is uppercase letter
-        const letter = code.substring(5, 6);
-        if (!/^[A-Z]$/.test(letter)) return false;
-
-        // Calculate the expected letter
-        const sum = Array.from(digits).reduce(
-          (acc, digit) => acc + Number.parseInt(digit),
-          0
-        );
-        const remainder = sum % 26;
-        const expectedLetter = String.fromCharCode(65 + remainder); // 65 is ASCII for 'A'
-
-        return letter === expectedLetter;
+        return isValidCode(code);
       },
       {
         message: "Invalid unique code format",

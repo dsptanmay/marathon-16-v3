@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import { isValidCode } from "@/lib/utils";
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";
@@ -10,16 +11,7 @@ const utilsHandler = new Hono().get(
     z
       .object({ unique_code: z.string().regex(/^\d{5}[A-Z]{1}$/) })
       .refine(({ unique_code }) => {
-        const digits = unique_code.slice(0, 5);
-        const letter = unique_code.slice(5);
-        const sum = Array.from(digits).reduce(
-          (acc, digit) => acc + Number.parseInt(digit),
-          0
-        );
-        const remainder = sum % 26;
-        const expectedLetter = String.fromCharCode(65 + remainder); // 65 is ASCII for 'A'
-
-        return letter === expectedLetter;
+        return isValidCode(unique_code);
       })
   ),
   async (c) => {
