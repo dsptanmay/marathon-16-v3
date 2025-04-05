@@ -3,7 +3,6 @@ import { useMutation } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import axios from "axios";
 
 type $post = typeof api.register.boys.$post;
 type ResponseType = InferResponseType<$post, 201>["data"];

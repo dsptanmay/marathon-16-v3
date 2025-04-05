@@ -1,4 +1,3 @@
-import axios from "axios";
 import { api } from "@/lib/hono";
 import { useMutation } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
