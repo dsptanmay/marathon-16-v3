@@ -3,7 +3,7 @@ import { zValidator } from "@hono/zod-validator";
 import { db } from "@/db";
 import { InsertParticipantSchema, masterTable } from "@/db/schema";
 
-export const participantsHandler = new Hono()
+const registerHandler = new Hono()
   .post(
     "/boys",
     zValidator("json", InsertParticipantSchema.omit({ category: true })),
@@ -75,3 +75,5 @@ export const participantsHandler = new Hono()
       return c.json({ data: res[0] }, 201);
     }
   );
+
+export default registerHandler;

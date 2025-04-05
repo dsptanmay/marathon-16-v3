@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { masterTable } from "@/db/schema";
 import { eq, count, isNotNull } from "drizzle-orm";
 
-export const countHandler = new Hono()
+const countHandler = new Hono()
   .get("/registrations", async (c) => {
     const boysCount = await db
       .select({ count: count() })
@@ -49,3 +49,5 @@ export const countHandler = new Hono()
       .then((result) => result[0].count);
     return c.json({ count: totalCount }, 200);
   });
+
+export default countHandler;

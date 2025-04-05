@@ -8,8 +8,9 @@ import { handle } from "hono/vercel";
 import { requestId } from "hono/request-id";
 
 import utilsHandler from "./utils";
-import { countHandler } from "./counts";
-import { participantsHandler } from "./register";
+import countHandler from "./counts";
+import registerHandler from "./register";
+import participantsHandler from "./participants";
 
 const app = new Hono({ strict: false })
   .basePath("/api")
@@ -29,7 +30,8 @@ const app = new Hono({ strict: false })
 const routes = app
   .route("/utils", utilsHandler)
   .route("/counts", countHandler)
-  .route("/register", participantsHandler);
+  .route("/register", registerHandler)
+  .route("/participants", participantsHandler);
 
 export const GET = handle(app);
 export const POST = handle(app);
