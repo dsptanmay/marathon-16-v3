@@ -1,15 +1,54 @@
 # See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
 
-name: Fly Deploy
+# name: Fly Deploy
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   deploy:
+#     name: Deploy app
+#     runs-on: ubuntu-latest
+#     concurrency: deploy-group    # optional: ensure only one action runs at a time
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: superfly/flyctl-actions/setup-flyctl@master
+#       - run: flyctl deploy --remote-only
+#         env:
+#           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+name: CI and Deploy
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request: {}
+
 jobs:
-  deploy:
-    name: Deploy app
+  build:
     runs-on: ubuntu-latest
-    concurrency: deploy-group    # optional: ensure only one action runs at a time
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install -g pnpm && pnpm install
+
+      - name: Copy .env.example files
+        shell: bash
+        run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "${1%.*}"' _ {} \;
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+  deploy:
+    needs: build # This ensures deploy only runs after build succeeds
+    runs-on: ubuntu-latest
+    concurrency: deploy-group
+    if: github.ref == 'refs/heads/main' # Only run on main branch
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
