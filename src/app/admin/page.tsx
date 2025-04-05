@@ -3,8 +3,8 @@ import React from "react";
 
 function AdminPage() {
   return (
-    <div className="flex flex-col p-6 justify-evenly flex-1 max-w-md">
-      <div className="bg-bg p-5 rounded-base border-2 border-border flex flex-col space-y-3">
+    <div className="flex flex-col p-6 justify-evenly flex-1 h-full">
+      <div className="bg-bg p-5 rounded-base border-2 border-border flex flex-col space-y-3 mb-4 lg:mb-0">
         <h1 className="text-center text-xl font-bold">
           Participant Statistics
         </h1>

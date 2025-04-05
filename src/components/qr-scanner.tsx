@@ -68,6 +68,7 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
       }
     } catch (err) {
       console.log("Permission API not supported");
+      console.error(err);
       setPermissionState("unavailable");
     }
   };
@@ -112,6 +113,7 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
         decodedText: string,
         result: Html5QrcodeResult
       ) => {
+        console.log(result);
         if (isValidQRFormat(decodedText)) {
           try {
             await onScanAction(decodedText);

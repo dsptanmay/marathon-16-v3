@@ -18,10 +18,16 @@ const countHandler = new Hono()
       .where(eq(masterTable.category, "girls"))
       .then((result) => result[0].count);
 
-    const walkathonCount = await db
+    const walkathonMaleCount = await db
       .select({ count: count() })
       .from(masterTable)
-      .where(eq(masterTable.category, "walkathon"))
+      .where(eq(masterTable.category, "walkathon_m"))
+      .then((result) => result[0].count);
+
+    const walkathonFemaleCount = await db
+      .select({ count: count() })
+      .from(masterTable)
+      .where(eq(masterTable.category, "walkathon_f"))
       .then((result) => result[0].count);
 
     const finishedCount = await db
@@ -35,7 +41,8 @@ const countHandler = new Hono()
         categories: {
           boys: boysCount,
           girls: girlsCount,
-          walkathon: walkathonCount,
+          walkathon_m: walkathonMaleCount,
+          walkathon_f: walkathonFemaleCount,
         },
         finished: finishedCount,
       },

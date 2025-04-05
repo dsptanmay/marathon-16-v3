@@ -15,8 +15,7 @@ function GetCertificatePage() {
   const [code, setCode] = useState("");
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
 
-  const { data, isLoading, isError, error, refetch } =
-    useGetName(submittedCode);
+  const { data, isLoading } = useGetName(submittedCode);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
