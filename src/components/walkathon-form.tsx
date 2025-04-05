@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
@@ -11,10 +13,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { walkathonSchema, type WalkathonFormValues } from "@/lib/form-schemas";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { useRegisterWalkathon } from "@/hooks/use-register-walkathon";
+import { walkathonSchema, type WalkathonFormValues } from "@/lib/form-schemas";
 
 function RequiredLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -40,6 +49,7 @@ export default function WalkathonForm() {
       uniqueCode: "",
       phoneNumber: "",
       emailId: "",
+      gender: "male",
     },
   });
 
@@ -49,6 +59,7 @@ export default function WalkathonForm() {
       name: data.fullName,
       phone_no: data.phoneNumber,
       unique_code: data.uniqueCode,
+      gender: data.gender,
     });
     setSubmitSuccess(true);
     form.reset();
@@ -135,6 +146,33 @@ export default function WalkathonForm() {
                       placeholder="name@email.com"
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <RequiredLabel>Gender</RequiredLabel>
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select yout gender" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

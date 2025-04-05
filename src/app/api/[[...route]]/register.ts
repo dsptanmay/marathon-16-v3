@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { db } from "@/db";
 import { InsertParticipantSchema, masterTable } from "@/db/schema";
+import { z } from "zod";
 
 const registerHandler = new Hono()
   .post(
@@ -59,14 +60,19 @@ const registerHandler = new Hono()
         category: true,
         usn: true,
         isSitian: true,
-      })
+      }).extend({ gender: z.enum(["male", "female"]) })
     ),
     async (c) => {
       const body = c.req.valid("json");
 
       const res = await db
         .insert(masterTable)
-        .values({ ...body, category: "walkathon", usn: null, isSitian: null })
+        .values({
+          ...body,
+          category: body.gender === "female" ? "walkathon_f" : "walkathon_m",
+          usn: null,
+          isSitian: null,
+        })
         .returning();
 
       if (res.length === 0)

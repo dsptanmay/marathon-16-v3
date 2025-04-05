@@ -32,7 +32,9 @@ export const marathonSchema = baseSchema.extend({
 });
 
 // Schema for Walkathon (same as base schema)
-export const walkathonSchema = baseSchema;
+export const walkathonSchema = baseSchema.extend({
+  gender: z.enum(["male", "female"]),
+});
 
 // Schema for certificate retrieval
 export const certificateSchema = z.object({
