@@ -87,7 +87,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
         email: data.emailId,
         phone_no: data.phoneNumber,
         unique_code: data.uniqueCode,
-        usn: data.usn,
+        usn: data.usn?.toUpperCase(),
         isSitian,
       });
     }
