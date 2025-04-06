@@ -8,7 +8,7 @@ type ResponseType = InferResponseType<$get, 200>["data"];
 export const useGetName = (submitted_code: string | null) => {
   const query = useQuery<ResponseType, Error>({
     queryKey: ["isCrossed", { submitted_code }],
-    enabled: !!submitted_code,
+    enabled: false,
     queryFn: async () => {
       const response = await api.utils.crossed.$get({
         query: { unique_code: submitted_code! },
