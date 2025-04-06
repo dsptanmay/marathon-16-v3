@@ -11,7 +11,7 @@ const useGetSITParticipants = () => {
   const query = useQuery<ResponseType, Error>({
     queryKey: ["get-sit-participants"],
     enabled: false,
-    queryFn: async (c) => {
+    queryFn: async () => {
       const response = await api.participants.all.sit.$get();
       if (!response.ok)
         throw new Error("Failed to fetch all SIT participants!");

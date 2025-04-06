@@ -11,7 +11,7 @@ const useGetGirlsParticipants = () => {
   const query = useQuery<ResponseType, Error>({
     queryKey: ["get-girls-participants"],
     enabled: false,
-    queryFn: async (c) => {
+    queryFn: async () => {
       const response = await api.participants.all.girls.$get();
       if (!response.ok)
         throw new Error("Failed to fetch all girls participants!");

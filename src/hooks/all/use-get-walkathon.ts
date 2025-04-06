@@ -11,7 +11,7 @@ const useGetWalkathonParticipants = () => {
   const query = useQuery<ResponseType, Error>({
     queryKey: ["get-walkathon-participants"],
     enabled: false,
-    queryFn: async (c) => {
+    queryFn: async () => {
       const response = await api.participants.all.walkathon.$get();
       if (!response.ok)
         throw new Error("Failed to fetch all walkathon participants!");
