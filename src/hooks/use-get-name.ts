@@ -13,8 +13,12 @@ export const useGetName = (submitted_code: string | null) => {
       const response = await api.utils.crossed.$get({
         query: { unique_code: submitted_code! },
       });
-      if (!response.ok)
-        throw new Error("Failed to check if participant has crossed!");
+      if (response.status === 400)
+        throw new Error("Participant has not crossed finish line yet!");
+      else if (response.status === 404)
+        throw new Error("Participant not found!");
+      else if (!response.ok)
+        throw new Error("Failed to fetch participant status!");
       return (await response.json()).data;
     },
   });

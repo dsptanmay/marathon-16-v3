@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -133,6 +134,11 @@ function GetCertificatePage() {
             </Button>
           </form>
         </CardContent>
+        {status === "error" && error && (
+          <CardFooter className="text-rose-600 text-center flex flex-col items-center justify-center">
+            {error.message}
+          </CardFooter>
+        )}
       </Card>
     </div>
   );
