@@ -6,7 +6,7 @@ function Top3WalkathonFemales() {
   return (
     <div>
       <Button variant="noShadow" className="text-base py-6 w-full">
-        Top 3 Walkathon - Males
+        Top 3 Walkathon - Females
       </Button>
     </div>
   );

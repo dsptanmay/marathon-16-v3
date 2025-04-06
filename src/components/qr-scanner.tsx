@@ -7,6 +7,7 @@ import {
   Html5QrcodeResult,
 } from "html5-qrcode";
 import { Html5QrcodeError } from "html5-qrcode/esm/core";
+import { Button } from "@/components/ui/button";
 
 interface QRScannerProps {
   onScanAction: (data: string) => Promise<void>;
@@ -194,30 +195,35 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center space-y-5 h-full">
+      <div className="bg-bg p-4 rounded-base border-border border-2 flex flex-col items-center justify-center w-full">
+        <h1 className="text-base font-bold">Participant Scanner</h1>
+      </div>
+
       <div ref={containerRef} className="w-full max-w-md">
         <div
           id={scannerId}
-          className="relative aspect-square rounded-lg overflow-hidden"
+          className="relative aspect-square rounded-base overflow-hidden"
         />
       </div>
 
       {error && (
-        <div className="mt-2 p-2 bg-red-100 text-red-700 rounded-md w-full max-w-md">
+        <div className="mb-2 p-2 bg-rose-500 text-red-100 rounded-base w-full max-w-md text-center">
           {error}
         </div>
       )}
 
-      <button
+      <Button
         onClick={toggleScanner}
-        className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md"
+        className="px-6 py-6 text-base font-bold w-full"
+        variant={"noShadow"}
       >
         {isScanning
           ? "Stop Scanner"
           : permissionState === "denied"
           ? "Grant Camera Permission"
           : "Start Scanner"}
-      </button>
+      </Button>
     </div>
   );
 }

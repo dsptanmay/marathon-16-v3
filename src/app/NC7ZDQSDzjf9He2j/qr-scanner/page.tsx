@@ -35,18 +35,16 @@ export default function ScannerPage() {
   };
 
   return (
-    <div className="flex flex-col p-4">
-      <h1 className="text-2xl font-bold mb-4">Participant Scanner</h1>
-
+    <div className="p-4 flex flex-col">
       <QRScanner onScanAction={handleScan} fps={15} />
 
       {scanStatus && (
         <Card
           className={`${
             scanStatus.success
-              ? "bg-green-200 text-green-800"
-              : "bg-rose-500 text-red-800"
-          }`}
+              ? "bg-emerald-600 text-green-100"
+              : "bg-rose-500 text-red-100"
+          } mt-2 p-2 text-center`}
         >
           {scanStatus.message}
         </Card>

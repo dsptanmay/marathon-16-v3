@@ -18,7 +18,7 @@ import React from "react";
 
 function AdminPage() {
   return (
-    <div className="flex flex-col p-6 space-y-5 h-full w-full">
+    <div className="flex flex-col p-6 gap-y-5 h-full">
       <Card className="bg-bg">
         <CardHeader className="text-center">
           <CardTitle>Top Participants</CardTitle>
