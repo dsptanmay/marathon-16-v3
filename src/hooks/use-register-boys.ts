@@ -21,7 +21,7 @@ export const useRegisterBoys = () => {
       toast.success(
         `Successfully registered ${variables.name} (${variables.unique_code})!`
       );
-      router.push("/");
+      router.push(`/code/${variables.unique_code}`);
     },
     onError: (error, variables) => {
       toast.error(

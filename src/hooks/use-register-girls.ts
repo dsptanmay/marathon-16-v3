@@ -22,7 +22,7 @@ export const useRegisterGirls = () => {
         `Successfully registered ${variables.name} (${variables.unique_code})!`
       );
       if (process.env.NODE_ENV !== "production") console.log(data);
-      router.push("/");
+      router.push(`/code/${variables.unique_code}`);
     },
     onError: (error, variables) => {
       toast.error(
