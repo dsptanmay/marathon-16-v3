@@ -8,12 +8,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { fetchImageAsBase64 } from "@/lib/utils";
 
 import { useGetName } from "@/hooks/use-get-name";
 
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import jsPDF from "jspdf";
 
 import React, { useEffect, useState } from "react";
+
+interface CertificateConfig {
+  certificateImageUrl: string;
+  name: string;
+  fontFamily?: string;
+  fontSize?: number;
+  fontColor?: [number, number, number];
+  fontStyle?: "normal" | "bold" | "italic" | "bolditalic";
+}
 
 function GetCertificatePage() {
   const [code, setCode] = useState("");
@@ -32,49 +42,73 @@ function GetCertificatePage() {
     fetchCertificate();
   }, []);
 
-  const generatePDF = async (name: string) => {
-    const doc = await PDFDocument.create();
-    const page = doc.addPage([3508, 2481]);
-    const font = await doc.embedFont(StandardFonts.TimesRomanBoldItalic);
-    const fontSize = 100;
-    page.setFont(font);
+  const generateCertificatePDF = async (
+    config: CertificateConfig
+  ): Promise<void> => {
+    const {
+      certificateImageUrl,
+      name,
+      fontFamily = "times",
+      fontSize = 100,
+      fontColor = [0, 0, 0], // Black
+      fontStyle = "bolditalic",
+    } = config;
 
-    const textWidth = font.widthOfTextAtSize(name, fontSize);
-    const { width } = page.getSize();
+    // Convert to mm (assuming 72 DPI)
+    const width = 3508 * 0.3528;
+    const height = 2481 * 0.3528;
 
-    const certImage = await doc.embedPng(certBytes!);
-
-    page.drawImage(certImage, { x: 0, y: 0, height: 2481, width: 3508 });
-
-    page.drawText(name, {
-      x: (width - textWidth) / 2,
-      y: 1275,
-      size: fontSize,
-      color: rgb(0, 0, 0),
-      font,
+    const doc = new jsPDF({
+      orientation: "landscape",
+      unit: "mm",
+      format: [width, height],
     });
 
-    const pdfBytes = await doc.save();
-    return pdfBytes;
-  };
+    try {
+      const imageBase64 = await fetchImageAsBase64(certificateImageUrl);
 
+      doc.addImage(imageBase64, "PNG", 0, 0, width, height);
+
+      doc.setFont(fontFamily, fontStyle);
+      doc.setFontSize(fontSize);
+      doc.setTextColor(fontColor[0], fontColor[1], fontColor[2]);
+
+      const yPositionFromTop = height - 1275 * 0.3528;
+
+      const textWidth = doc.getTextWidth(name);
+      const xPosition = (width - textWidth) / 2;
+
+      doc.text(name, xPosition, yPositionFromTop);
+
+      const fileName = `Certificate_of_Participation-${name.replace(
+        /\s+/g,
+        "_"
+      )}.pdf`;
+      doc.save(fileName);
+
+      return Promise.resolve();
+    } catch (error) {
+      console.error("Error generating certificate:", error);
+      return Promise.reject(error);
+    }
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { data } = await refetch();
-    if (status === "error") {
-      console.error(error);
-      return;
-    }
-    if (status === "success") {
-      const pdf = await generatePDF(data!);
-      const blob = new Blob([pdf], { type: "application/pdf" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `Certificate_Of_Participation-${data}.pdf`;
-      a.click();
-      window.URL.revokeObjectURL(url);
-    }
+    await refetch()
+      .then((res) => {
+        if (res.status === "success" && res.data) {
+          return generateCertificatePDF({
+            certificateImageUrl: "https://i.imgur.com/T7AMnkD.png",
+            name: res.data,
+          });
+        } else if (res.status === "error") console.error(res.error);
+      })
+      .catch((err) => {
+        console.error(
+          "Error during refetching or certificate generation:",
+          err
+        );
+      });
   };
   return (
     <div className="p-6 w-full lg:max-w-lg">
@@ -93,6 +127,7 @@ function GetCertificatePage() {
               type="submit"
               className="w-full text-base py-5"
               variant={"noShadow"}
+              disabled={isLoading}
             >
               {isLoading ? "Fetching Certificate..." : "Get Certificate"}
             </Button>
