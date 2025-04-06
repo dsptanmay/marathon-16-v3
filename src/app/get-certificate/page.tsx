@@ -15,7 +15,7 @@ import { useGetName } from "@/hooks/use-get-name";
 
 import jsPDF from "jspdf";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 interface CertificateConfig {
   certificateImageUrl: string;
