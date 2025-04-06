@@ -28,20 +28,7 @@ interface CertificateConfig {
 
 function GetCertificatePage() {
   const [code, setCode] = useState("");
-  const [certBytes, setCertBytes] = useState<ArrayBuffer>();
-
   const { isLoading, status, error, refetch } = useGetName(code);
-
-  useEffect(() => {
-    const fetchCertificate = async () => {
-      const certBuffer = await fetch("https://i.imgur.com/T7AMnkD.png").then(
-        (img) => img.arrayBuffer()
-      );
-      setCertBytes(certBuffer);
-    };
-
-    fetchCertificate();
-  }, []);
 
   const generateCertificatePDF = async (
     config: CertificateConfig
