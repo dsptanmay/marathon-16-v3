@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import useGetBoysParticipants from "@/hooks/all/use-get-boys";
 import jsPDF from "jspdf";
