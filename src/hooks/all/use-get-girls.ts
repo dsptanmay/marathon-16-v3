@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 type ResponseType = InferResponseType<
   typeof api.participants.all.girls.$get,
   200
->;
+>["data"];
 
 const useGetGirlsParticipants = () => {
   const query = useQuery<ResponseType, Error>({
@@ -15,7 +15,7 @@ const useGetGirlsParticipants = () => {
       const response = await api.participants.all.girls.$get();
       if (!response.ok)
         throw new Error("Failed to fetch all girls participants!");
-      return await response.json();
+      return (await response.json()).data;
     },
   });
   return query;

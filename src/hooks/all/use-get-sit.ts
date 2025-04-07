@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 type ResponseType = InferResponseType<
   typeof api.participants.all.sit.$get,
   200
->;
+>["data"];
 
 const useGetSITParticipants = () => {
   const query = useQuery<ResponseType, Error>({
@@ -15,7 +15,7 @@ const useGetSITParticipants = () => {
       const response = await api.participants.all.sit.$get();
       if (!response.ok)
         throw new Error("Failed to fetch all SIT participants!");
-      return await response.json();
+      return (await response.json()).data;
     },
   });
   return query;
