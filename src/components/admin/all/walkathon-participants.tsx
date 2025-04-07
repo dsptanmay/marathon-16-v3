@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import useGetWalkathonParticipants from "@/hooks/all/use-get-walkathon";
 import jsPDF from "jspdf";
