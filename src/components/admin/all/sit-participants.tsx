@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import useGetSITParticipants from "@/hooks/all/use-get-sit";
 import jsPDF from "jspdf";
