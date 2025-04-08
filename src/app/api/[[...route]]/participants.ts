@@ -115,7 +115,7 @@ const participantsHandler = new Hono()
       .from(masterTable)
       .where(eq(masterTable.category, "walkathon_m"))
       .orderBy(masterTable.crossTime)
-      .limit(3);
+      .limit(10);
 
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
@@ -132,7 +132,7 @@ const participantsHandler = new Hono()
       .from(masterTable)
       .where(eq(masterTable.category, "walkathon_f"))
       .orderBy(masterTable.crossTime)
-      .limit(3);
+      .limit(10);
 
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);

@@ -1,8 +1,6 @@
 import { AppType } from "@/app/api/[[...route]]/route";
 import { hc } from "hono/client";
 
-const client = hc<AppType>(
-  "https://pf-marathon-16.vercel.app/"
-);
+const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL!);
 
 export const api = client.api;

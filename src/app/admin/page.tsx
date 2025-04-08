@@ -4,8 +4,8 @@ import GetAllSITParticipantsButton from "@/components/admin/all/sit-participants
 import GetAllWalkathonParticipantsButton from "@/components/admin/all/walkathon-participants";
 import Top20BoysButton from "@/components/admin/top/boys-20";
 import Top20GirlsButton from "@/components/admin/top/girls-20";
-import Top3WalkathonFemales from "@/components/admin/top/walkathon-3-females";
-import Top3WalkathonMales from "@/components/admin/top/walkathon-3-males";
+import Top10WalkathonFemales from "@/components/admin/top/walkathon-10-females";
+import Top10WalkathonMales from "@/components/admin/top/walkathon-10-males";
 
 import {
   Card,
@@ -27,8 +27,8 @@ function AdminPage() {
         <CardContent className="flex flex-col space-y-5">
           <Top20BoysButton />
           <Top20GirlsButton />
-          <Top3WalkathonMales />
-          <Top3WalkathonFemales />
+          <Top10WalkathonMales />
+          <Top10WalkathonFemales />
         </CardContent>
       </Card>
       <Card className="bg-bg">
