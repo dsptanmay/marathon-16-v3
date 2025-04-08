@@ -44,14 +44,14 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-  deploy:
-    needs: build # This ensures deploy only runs after build succeeds
-    runs-on: ubuntu-latest
-    concurrency: deploy-group
-    if: github.ref == 'refs/heads/main' # Only run on main branch
-    steps:
-      - uses: actions/checkout@v4
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  # deploy:
+  #   needs: build # This ensures deploy only runs after build succeeds
+  #   runs-on: ubuntu-latest
+  #   concurrency: deploy-group
+  #   if: github.ref == 'refs/heads/main' # Only run on main branch
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: superfly/flyctl-actions/setup-flyctl@master
+  #     - run: flyctl deploy --remote-only
+  #       env:
+  #         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

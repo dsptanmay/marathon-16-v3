@@ -1,12 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useGetTop3WalkathonFemales } from "@/hooks/top/use-get-top-3-walkathon-females";
+import { useGetTop10WalkathonFemales } from "@/hooks/top/use-get-top-10-walkathon-females";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import React from "react";
 
-function Top3WalkathonFemales() {
-  const { error, refetch } = useGetTop3WalkathonFemales();
+function Top10WalkathonFemales() {
+  const { error, refetch } = useGetTop10WalkathonFemales();
 
   const generatePDF = async (
     data: {
@@ -31,7 +31,7 @@ function Top3WalkathonFemales() {
     const pageWidth = doc.internal.pageSize.getWidth();
 
     doc.setFontSize(16);
-    doc.text("Top 3 Participants - Walkathon - Females", pageWidth / 2, 20, {
+    doc.text("Top 10 Participants - Walkathon - Females", pageWidth / 2, 20, {
       align: "center",
     });
     autoTable(doc, {
@@ -63,10 +63,10 @@ function Top3WalkathonFemales() {
         className="text-base py-6 w-full"
         onClick={handleSubmit}
       >
-        Top 3 Walkathon - Females
+        Top 10 Walkathon - Females
       </Button>
     </div>
   );
 }
 
-export default Top3WalkathonFemales;
+export default Top10WalkathonFemales;

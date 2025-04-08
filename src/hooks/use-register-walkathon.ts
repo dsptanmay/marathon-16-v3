@@ -1,3 +1,4 @@
+import env from "@/lib/env";
 import { api } from "@/lib/hono";
 import { useMutation } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
@@ -21,7 +22,6 @@ export const useRegisterWalkathon = () => {
       toast.success(
         `Successfully registered ${variables.name} (${variables.unique_code})!`
       );
-      if (process.env.NODE_ENV !== "production") console.log(data);
       router.push(`/code/${variables.unique_code}`);
     },
     onError: (error, variables) => {
