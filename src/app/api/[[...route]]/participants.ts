@@ -103,7 +103,7 @@ const participantsHandler = new Hono()
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
-  .get("/top3/walkathon_males", async (c) => {
+  .get("/top10/walkathon_males", async (c) => {
     const res = await db
       .select({
         unique_code: masterTable.unique_code,
@@ -120,7 +120,7 @@ const participantsHandler = new Hono()
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
-  .get("/top3/walkathon_females", async (c) => {
+  .get("/top10/walkathon_females", async (c) => {
     const res = await db
       .select({
         unique_code: masterTable.unique_code,
