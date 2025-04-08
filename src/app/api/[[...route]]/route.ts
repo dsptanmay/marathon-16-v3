@@ -11,7 +11,6 @@ import utilsHandler from "./utils";
 import countHandler from "./counts";
 import registerHandler from "./register";
 import participantsHandler from "./participants";
-import env from "@/lib/env";
 
 const app = new Hono({ strict: false })
   .basePath("/api")
@@ -20,7 +19,7 @@ const app = new Hono({ strict: false })
     logger({
       pino: pino(
         {
-          level: env.LOG_LEVEL || "debug",
+          level: process.env.LOG_LEVEL || "debug",
         },
         pretty()
       ),

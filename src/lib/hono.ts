@@ -1,5 +1,8 @@
 import { AppType } from "@/app/api/[[...route]]/route";
 import { hc } from "hono/client";
+import { config } from "dotenv";
+
+config({});
 
 const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL!);
 

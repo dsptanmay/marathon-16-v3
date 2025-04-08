@@ -22,7 +22,6 @@ export const useRegisterWalkathon = () => {
       toast.success(
         `Successfully registered ${variables.name} (${variables.unique_code})!`
       );
-      if (env.NODE_ENV !== "production") console.log(data);
       router.push(`/code/${variables.unique_code}`);
     },
     onError: (error, variables) => {
