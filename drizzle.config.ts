@@ -1,4 +1,3 @@
-import env from "@/lib/env";
 import * as dotenv from "dotenv";
 import type { Config } from "drizzle-kit";
 
@@ -12,6 +11,6 @@ export default {
   out: "./src/db/migrations",
   dialect: "postgresql",
   dbCredentials: {
-    url: env.DATABASE_URL,
+    url: process.env.DATABASE_URL!,
   },
 } satisfies Config;
