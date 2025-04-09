@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -11,6 +12,8 @@ import { isValidCode } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function UniqueCodePage() {
   const params = useParams();
@@ -40,7 +43,7 @@ export default function UniqueCodePage() {
   return (
     <Card className="drop-shadow-md">
       <CardHeader className="text-center">
-        <CardTitle className="text-xl">{unique_code}</CardTitle>
+        <CardTitle className="text-xl">Successfully Registered!</CardTitle>
         <CardDescription className="text-base">
           QR for Unique Code {unique_code}
         </CardDescription>
@@ -56,6 +59,20 @@ export default function UniqueCodePage() {
           />
         ) : undefined}
       </CardContent>
+      <CardFooter>
+        <Link
+          href={"https://chat.whatsapp.com/HbRkLUMA0qw1t3IaBLGYAm"}
+          className="w-full h-full flex items-center justify-center"
+        >
+          <Button
+            className="bg-emerald-600 text-emerald-100 w-full text-base py-8 font-bold flex flex-row sm:flex-col"
+            variant={"noShadow"}
+          >
+            <h1>WhatsApp Group</h1>
+            <h2 className="text-sm font-base">Follow for more updates</h2>
+          </Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 }
