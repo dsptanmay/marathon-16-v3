@@ -12,23 +12,17 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import ImageMarquee from "@/components/img-marquee";
 
 function HomePage() {
   const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
-      <header className="bg-background border-border border-b-2 text-mtext py-2 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
-        <Link href="/" className="text-xl font-heading mt-2 lg:mt-0">
+      <header className="bg-background border-border border-b-2 text-mtext py-4 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
+        <Link href="/" className="text-2xl font-heading mt-2 lg:mt-0">
           Marathon 16.0
         </Link>
-        <div className="size-20 relative">
-          <Image
-            src={fakeLogo}
-            alt="Sponsor Logo"
-            fill
-            className="object-contain"
-          />
-        </div>
+        <ImageMarquee />
       </header>
       <div className="grow flex flex-col justify-evenly lg:py-5 py-4 px-10 w-full lg:max-w-lg">
         <Card className="bg-background mb-4 lg:mb-0">

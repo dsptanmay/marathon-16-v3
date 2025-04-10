@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import fakeLogo from "../../public/fake-logo.svg";
+import ImageMarquee from "./img-marquee";
 
 export default function Header() {
   return (
@@ -8,13 +7,8 @@ export default function Header() {
       <Link href="/" className="text-2xl font-heading">
         Marathon 16.0
       </Link>
-      <div className="h-11 w-24 relative">
-        <Image
-          src={fakeLogo}
-          alt="Sponsor Logo"
-          fill
-          className="object-contain"
-        />
+      <div className="relative flex flex-row ">
+        <ImageMarquee />
       </div>
     </header>
   );
