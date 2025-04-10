@@ -100,7 +100,7 @@ function GetCertificatePage() {
   };
   return (
     <div className="p-6 w-full lg:max-w-lg">
-      <Card className="bg-bg min-w-full">
+      <Card className="bg-background min-w-full">
         <CardHeader className="text-center">
           <CardTitle>Get Your Certificate</CardTitle>
           <CardDescription>Enter your Unique Code below</CardDescription>

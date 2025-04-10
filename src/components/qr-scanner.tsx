@@ -196,7 +196,7 @@ export default function QRScanner({ onScanAction, fps = 15 }: QRScannerProps) {
 
   return (
     <div className="flex flex-col items-center space-y-5 h-full">
-      <div className="bg-bg p-4 rounded-base border-border border-2 flex flex-col items-center justify-center w-full">
+      <div className="bg-background p-4 rounded-base border-border border-2 flex flex-col items-center justify-center w-full">
         <h1 className="text-base font-bold">Participant Scanner</h1>
       </div>
 

@@ -65,3 +65,10 @@
     transform: translateX(0%);
   }
 }
+
+body {
+  background-image: url("../../public/gggrain.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

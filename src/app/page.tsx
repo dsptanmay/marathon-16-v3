@@ -17,7 +17,7 @@ function HomePage() {
   const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col items-center w-full">
-      <header className="bg-bg border-border border-b-2 text-mtext py-2 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
+      <header className="bg-background border-border border-b-2 text-mtext py-2 px-6 flex w-full flex-col sm:flex-row justify-between items-center gap-4">
         <Link href="/" className="text-xl font-heading mt-2 lg:mt-0">
           Marathon 16.0
         </Link>
@@ -31,7 +31,7 @@ function HomePage() {
         </div>
       </header>
       <div className="grow flex flex-col justify-evenly lg:py-5 py-4 px-10 w-full lg:max-w-lg">
-        <Card className="bg-bg mb-4 lg:mb-0">
+        <Card className="bg-background mb-4 lg:mb-0">
           <CardHeader className="text-center">
             <CardTitle>Registrations</CardTitle>
             <CardDescription>Register for the marathon</CardDescription>
@@ -66,7 +66,7 @@ function HomePage() {
             </Button>
           </CardContent>
         </Card>
-        <Card className="bg-bg">
+        <Card>
           <CardHeader className="text-center">
             <CardTitle>Certificate</CardTitle>
             <CardDescription>Download the Certificate</CardDescription>
@@ -85,7 +85,7 @@ function HomePage() {
           </CardContent>
         </Card>
       </div>
-      <footer className="w-full bg-bg border-t-2 border-border py-4 px-6 flex flex-col sm:flex-row justify-between items-center mt-auto gap-2">
+      <footer className="w-full bg-background border-t-2 border-border py-4 px-6 flex flex-col sm:flex-row justify-between items-center mt-auto gap-2">
         <div className="text-center sm:text-right font-bold">
           Team Pathfinder
         </div>

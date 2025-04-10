@@ -68,7 +68,7 @@ export default function WalkathonForm() {
   return (
     <div>
       {submitSuccess ? (
-        <div className="bg-bg rounded-base p-6 shadow-none border border-border text-center">
+        <div className="bg-background rounded-base p-6 shadow-none border border-border text-center">
           <h3 className="text-xl font-bold mb-4">Registration Successful!</h3>
           <p className="mb-4">Thank you for registering for the event.</p>
         </div>
@@ -76,7 +76,7 @@ export default function WalkathonForm() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full rounded-base p-6 shadow-none border-2 border-border space-y-6 bg-bg"
+            className="w-full rounded-base p-6 shadow-none border-2 border-border space-y-6 bg-background"
           >
             <div className="text-center mb-3 mt-3">
               <h1 className="text-2xl font-heading">Walkathon Registration</h1>

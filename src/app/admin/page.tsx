@@ -19,7 +19,7 @@ import React from "react";
 function AdminPage() {
   return (
     <div className="flex flex-col p-6 gap-y-5 h-full">
-      <Card className="bg-bg">
+      <Card className="bg-background">
         <CardHeader className="text-center">
           <CardTitle>Top Participants</CardTitle>
           <CardDescription>Fetch details of top participants</CardDescription>
@@ -31,7 +31,7 @@ function AdminPage() {
           <Top10WalkathonFemales />
         </CardContent>
       </Card>
-      <Card className="bg-bg">
+      <Card className="bg-background">
         <CardHeader className="text-center">
           <CardTitle>All Participants</CardTitle>
           <CardDescription>Fetch details of all participants</CardDescription>

@@ -96,7 +96,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
 
   if (regBoysError) {
     return (
-      <div className="p-6 flex flex-col bg-bg rounded-base border-2 border-border text-center">
+      <div className="p-6 flex flex-col bg-background rounded-base border-2 border-border text-center">
         <h1 className="text-xl font-bold">Failed to register participant!</h1>
         <h2>{regBoysError.message}</h2>
       </div>
@@ -115,7 +115,7 @@ export default function MarathonForm({ type }: { type: "Boys" | "Girls" }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="bg-bg p-6 shadow-none border-2 border-border space-y-6 rounded-base"
+          className="bg-background p-6 shadow-none border-2 border-border space-y-6 rounded-base"
         >
           <div className="flex flex-col text-center">
             <h1 className="text-xl font-bold">Registration for {type}</h1>
