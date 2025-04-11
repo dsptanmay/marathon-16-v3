@@ -86,7 +86,7 @@ function GetCertificatePage() {
       .then((res) => {
         if (res.status === "success" && res.data) {
           return generateCertificatePDF({
-            certificateImageUrl: "https://i.imgur.com/T7AMnkD.png",
+            certificateImageUrl: "https://imgbox.com/5CNdGobW",
             name: res.data,
           });
         } else if (res.status === "error") console.error(res.error);
