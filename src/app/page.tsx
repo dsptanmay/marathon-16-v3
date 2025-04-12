@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import fakeLogo from "../../public/fake-logo.svg";
 import {
   Card,
   CardContent,
