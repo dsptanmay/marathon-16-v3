@@ -57,7 +57,10 @@ const ScannerPage = () => {
       <h1 className="text-3xl font-bold py-4 text-center w-full bg-background rounded-base border-2 border-border">
         Admin QR Scanner
       </h1>
-      <div id="qr-reader" className="border border-white w-full"></div>
+      <div
+        id="qr-reader"
+        className="border border-border rounded-base w-full"
+      ></div>
       {scanning ? (
         <Button
           className="text-xl py-6"
