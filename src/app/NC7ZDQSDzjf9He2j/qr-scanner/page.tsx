@@ -1,54 +1,93 @@
 "use client";
+import React, { useEffect, useState } from "react";
 
-import { useState } from "react";
-import QRScanner from "@/components/qr-scanner";
+import { Button } from "@/components/ui/button";
+import { Html5Qrcode, Html5QrcodeResult } from "html5-qrcode";
+
 import { updateParticipantCrossTime } from "@/actions/qrActions";
-import { Card } from "@/components/ui/card";
 
-export default function ScannerPage() {
-  const [scanStatus, setScanStatus] = useState<{
-    success?: boolean;
-    message?: string;
-  } | null>(null);
+const ScannerPage = () => {
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  const [qrCodeElement, setQrCodeElement] = useState<any>();
+  const [scanning, setScanning] = useState<boolean>(false);
+  const [scannedCode, setScannedCode] = useState<string>("");
 
-  const handleScan = async (data: string) => {
+  useEffect(() => {
+    setQrCodeElement(new Html5Qrcode("qr-reader"));
+  }, []);
+
+  const onScanSuccess = async (
+    decodedText: string,
+    decodedResult: Html5QrcodeResult
+  ) => {
+    const uniqueCode = decodedResult.result.text;
+
     try {
-      // Call the server action
-      await updateParticipantCrossTime(data);
-
-      // Update UI with success message
-      setScanStatus({
-        success: true,
-        message: `Successfully recorded cross time for ${data}`,
-      });
-
-      // Log to console
-      console.log("Processed QR code:", data);
+      updateParticipantCrossTime(uniqueCode);
+      setScannedCode(uniqueCode);
+      stopCamera();
     } catch (error) {
-      setScanStatus({
-        success: false,
-        message:
-          error instanceof Error ? error.message : "An unknown error occurred",
-      });
-      console.error("Error processing scan:", error);
+      console.error(error);
     }
   };
 
-  return (
-    <div className="p-4 flex flex-col">
-      <QRScanner onScanAction={handleScan} fps={15} />
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  const onScanFailure = (err: any) => {
+    console.error(err);
+  };
 
-      {scanStatus && (
-        <Card
-          className={`${
-            scanStatus.success
-              ? "bg-emerald-600 text-green-100"
-              : "bg-rose-500 text-red-100"
-          } mt-2 p-2 text-center`}
+  const startCamera = () => {
+    qrCodeElement.start(
+      { facingMode: "environment" },
+      {
+        fps: 15,
+      },
+      onScanSuccess,
+      onScanFailure
+    );
+    setScanning(true);
+  };
+
+  const stopCamera = async () => {
+    await qrCodeElement.stop();
+    setScanning(false);
+  };
+  return (
+    <div className="flex flex-col p-4 w-full space-y-3">
+      <h1 className="text-3xl font-bold py-4 text-center w-full bg-background rounded-base border-2 border-border">
+        Admin QR Scanner
+      </h1>
+      <div id="qr-reader" className="border border-white w-full"></div>
+      {scanning ? (
+        <Button
+          className="text-xl py-6"
+          variant={"noShadow"}
+          onClick={() => {
+            stopCamera();
+          }}
         >
-          {scanStatus.message}
-        </Card>
+          Stop Camera
+        </Button>
+      ) : (
+        <Button
+          className="text-xl py-6"
+          variant={"noShadow"}
+          onClick={() => {
+            startCamera();
+          }}
+        >
+          Start Camera
+        </Button>
+      )}
+      {scannedCode ? (
+        <div className="w-full rounded-base p-3 bg-background border-border border-2 flex items-center justify-center">
+          {scannedCode} scanned successfully!
+        </div>
+      ) : (
+        <></>
       )}
     </div>
   );
-}
+};
+
+export default ScannerPage;
