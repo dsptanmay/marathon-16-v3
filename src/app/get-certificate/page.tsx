@@ -61,7 +61,7 @@ function GetCertificatePage() {
       doc.setFontSize(fontSize);
       doc.setTextColor(fontColor[0], fontColor[1], fontColor[2]);
 
-      const yPositionFromTop = height - 1275 * 0.3528;
+      const yPositionFromTop = height - 1225 * 0.3528;
 
       const textWidth = doc.getTextWidth(name);
       const xPosition = (width - textWidth) / 2;
@@ -82,12 +82,12 @@ function GetCertificatePage() {
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await refetch()
+    refetch()
       .then((res) => {
         if (res.status === "success" && res.data) {
           return generateCertificatePDF({
-            certificateImageUrl: "https://imgur.com/a/3ZNFUNQ",
-            name: res.data,
+            certificateImageUrl: res.data.cert_url,
+            name: res.data.participant_name,
           });
         } else if (res.status === "error") console.error(res.error);
       })

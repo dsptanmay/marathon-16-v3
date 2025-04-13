@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { InferResponseType } from "hono";
 
 type $get = typeof api.utils.crossed.$get;
-type ResponseType = InferResponseType<$get, 200>["data"];
+type ResponseType = InferResponseType<$get, 200>;
 
 export const useGetName = (submitted_code: string | null) => {
   const query = useQuery<ResponseType, Error>({
@@ -19,7 +19,7 @@ export const useGetName = (submitted_code: string | null) => {
         throw new Error("Participant not found!");
       else if (!response.ok)
         throw new Error("Failed to fetch participant status!");
-      return (await response.json()).data;
+      return await response.json();
     },
   });
   return query;

@@ -21,30 +21,30 @@ export function isValidCode(code: string): boolean {
 
 export const fetchImageAsBase64 = async (url: string): Promise<string> => {
   // For browser environment
-  // if (typeof window !== 'undefined') {
-  //   return new Promise((resolve, reject) => {
-  //     const img = new Image();
-  //     img.crossOrigin = 'Anonymous';
+  if (typeof window !== "undefined") {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
 
-  //     img.onload = () => {
-  //       const canvas = document.createElement('canvas');
-  //       canvas.width = img.width;
-  //       canvas.height = img.height;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
 
-  //       const ctx = canvas.getContext('2d');
-  //       ctx?.drawImage(img, 0, 0);
+        const ctx = canvas.getContext("2d");
+        ctx?.drawImage(img, 0, 0);
 
-  //       const dataURL = canvas.toDataURL('image/png');
-  //       resolve(dataURL);
-  //     };
+        const dataURL = canvas.toDataURL("image/png");
+        resolve(dataURL);
+      };
 
-  //     img.onerror = (error) => {
-  //       reject(error);
-  //     };
+      img.onerror = (error) => {
+        reject(error);
+      };
 
-  //     img.src = url;
-  //   });
-  // }
+      img.src = url;
+    });
+  }
   // For Node.js environment (e.g., Next.js API routes)
   const response = await fetch(url);
   const arrayBuffer = await response.arrayBuffer();

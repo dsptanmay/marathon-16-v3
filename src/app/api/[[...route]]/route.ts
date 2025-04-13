@@ -5,6 +5,7 @@ import pretty from "pino-pretty";
 import { pinoLogger as logger } from "hono-pino";
 
 import { handle } from "hono/vercel";
+import { cors } from "hono/cors";
 import { requestId } from "hono/request-id";
 
 import utilsHandler from "./utils";
@@ -14,7 +15,13 @@ import participantsHandler from "./participants";
 
 const app = new Hono({ strict: false })
   .basePath("/api")
+  .use(
+    cors({
+      origin: "*",
+    })
+  )
   .use(requestId())
+
   .use(
     logger({
       pino: pino(

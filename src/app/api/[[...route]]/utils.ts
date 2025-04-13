@@ -28,7 +28,17 @@ const utilsHandler = new Hono().get(
         400
       );
 
-    return c.json({ data: participant.name }, 200);
+    return c.json(
+      {
+        participant_name: participant.name,
+        cert_url:
+          participant.category === "walkathon_f" ||
+          participant.category === "walkathon_m"
+            ? "/certificate_walkathon.png"
+            : "/certificate_marathon.png",
+      },
+      200
+    );
   }
 );
 

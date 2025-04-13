@@ -6,7 +6,7 @@ import autoTable from "jspdf-autotable";
 import React from "react";
 
 function GetAllBoysParticipantsButton() {
-  const { error, refetch } = useGetBoysParticipants();
+  const { error, refetch, isFetching } = useGetBoysParticipants();
 
   const generatePDF = async (
     data: {
@@ -39,7 +39,7 @@ function GetAllBoysParticipantsButton() {
       theme: "striped",
       startY: 30,
     });
-    doc.save("All_Participants-Boys.pdf");
+    doc.save("All Participants-Boys.pdf");
   };
 
   const handleSubmit = async () => {
@@ -61,7 +61,7 @@ function GetAllBoysParticipantsButton() {
         variant="noShadow"
         onSubmit={handleSubmit}
       >
-        All Participants - Boys
+        {isFetching ? "Fetching Data..." : "All Participants - Boys"}
       </Button>
     </div>
   );

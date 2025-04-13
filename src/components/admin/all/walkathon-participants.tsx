@@ -39,7 +39,7 @@ function GetAllWalkathonParticipantsButton() {
       theme: "striped",
       startY: 30,
     });
-    doc.save("All_Participants-SIT.pdf");
+    doc.save("All Participants - Walkathon.pdf");
   };
 
   const handleSubmit = async () => {

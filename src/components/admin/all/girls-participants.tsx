@@ -38,7 +38,7 @@ function GetAllGirlsParticipantsButton() {
       theme: "striped",
       startY: 30,
     });
-    doc.save("All_Participants-Girls.pdf");
+    doc.save("All Participants - Girls.pdf");
   };
 
   const handleSubmit = async () => {
