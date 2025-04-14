@@ -55,7 +55,7 @@ function GetCertificatePage() {
     try {
       const imageBase64 = await fetchImageAsBase64(certificateImageUrl);
 
-      doc.addImage(imageBase64, "PNG", 0, 0, width, height);
+      doc.addImage(imageBase64, "PNG", 0, 0, width, height, "FAST");
 
       doc.setFont(fontFamily, fontStyle);
       doc.setFontSize(fontSize);
