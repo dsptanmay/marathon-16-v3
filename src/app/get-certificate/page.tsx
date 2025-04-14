@@ -50,12 +50,22 @@ function GetCertificatePage() {
       orientation: "landscape",
       unit: "mm",
       format: [width, height],
+      compress: true,
     });
 
     try {
       const imageBase64 = await fetchImageAsBase64(certificateImageUrl);
 
-      doc.addImage(imageBase64, "PNG", 0, 0, width, height, "FAST");
+      doc.addImage(
+        imageBase64,
+        "PNG",
+        0,
+        0,
+        width,
+        height,
+        "cert-image",
+        "FAST"
+      );
 
       doc.setFont(fontFamily, fontStyle);
       doc.setFontSize(fontSize);
