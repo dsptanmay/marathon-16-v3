@@ -2,6 +2,7 @@ import GetAllBoysParticipantsButton from "@/components/admin/all/boys-participan
 import GetAllGirlsParticipantsButton from "@/components/admin/all/girls-participants";
 import GetAllSITParticipantsButton from "@/components/admin/all/sit-participants";
 import GetAllWalkathonParticipantsButton from "@/components/admin/all/walkathon-participants";
+import GetAllParticipantsButton from "@/components/admin/all/all-participants";
 import Top20BoysButton from "@/components/admin/top/boys-20";
 import Top20GirlsButton from "@/components/admin/top/girls-20";
 import Top10WalkathonFemales from "@/components/admin/top/walkathon-10-females";
@@ -41,6 +42,7 @@ function AdminPage() {
           <GetAllGirlsParticipantsButton />
           <GetAllSITParticipantsButton />
           <GetAllWalkathonParticipantsButton />
+          <GetAllParticipantsButton />
         </CardContent>
       </Card>
     </div>
