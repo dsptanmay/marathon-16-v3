@@ -59,7 +59,7 @@ function GetAllBoysParticipantsButton() {
       <Button
         className="text-base py-6 w-full"
         variant="noShadow"
-        onSubmit={handleSubmit}
+        onClick={handleSubmit}
       >
         {isFetching ? "Fetching Data..." : "All Participants - Boys"}
       </Button>
