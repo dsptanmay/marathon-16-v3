@@ -72,6 +72,22 @@ const participantsHandler = new Hono()
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
+  .get("/all", async (c) => {
+      const res = await db
+          .select({
+            unique_code: masterTable.unique_code,
+            name: masterTable.name,
+            email: masterTable.email,
+            phone_no: masterTable.phone_no,
+            time_crossed: masterTable.time_crossed,
+          })
+          .from(masterTable)
+          .orderBy(masterTable.name);
+      if (res.length === 0) 
+        return c.json({ error: "No records found!" }, 404);
+      return c.json({ data: res }, 200);
+    };
+  )
   .get("/top20/boys", async (c) => {
     const res = await db
       .select({
