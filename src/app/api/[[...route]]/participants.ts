@@ -79,7 +79,7 @@ const participantsHandler = new Hono()
             name: masterTable.name,
             email: masterTable.email,
             phone_no: masterTable.phone_no,
-            time_crossed: masterTable.time_crossed,
+            time_crossed: masterTable.crossTime,
           })
           .from(masterTable)
           .orderBy(masterTable.name);
