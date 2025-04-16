@@ -3,7 +3,7 @@ import { InferResponseType } from "hono";
 import { useQuery } from "@tanstack/react-query";
 
 type ResponseType = InferResponseType<
-  typeof api.participants.all.$get,
+  typeof api.participants.$get,
   200
 >["data"];
 
@@ -12,9 +12,8 @@ const useGetAllParticipants = () => {
     queryKey: ["get-all-participants"],
     enabled: false,
     queryFn: async () => {
-      const response = await api.participants.all.$get();
-      if (!response.ok)
-        throw new Error("Failed to fetch all participants!");
+      const response = await api.participants.$get();
+      if (!response.ok) throw new Error("Failed to fetch all participants!");
       return (await response.json()).data;
     },
   });

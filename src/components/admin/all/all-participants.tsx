@@ -12,18 +12,27 @@ function GetAllParticipantsButton() {
     data: {
       unique_code: string;
       name: string;
-      email: string;
+      category: "girls" | "boys" | "walkathon_m" | "walkathon_f";
       phone_no: string;
       time_crossed: string | null;
     }[]
   ) => {
+    const categoryMapping = {
+      boys: "Boys Marathon",
+      girls: "Girls Marathon",
+      walkathon_f: "Female Walkathon",
+      walkathon_m: "Male Walkathon",
+    } as const;
+    type categoryKey = keyof typeof categoryMapping;
     const bodyValues = data.map(
-      ({ unique_code, name, email, phone_no, time_crossed }) => [
+      ({ unique_code, name, category, phone_no, time_crossed }) => [
         unique_code,
         name,
-        email,
+        categoryMapping[category as categoryKey],
         phone_no,
-        time_crossed ? new Date(time_crossed).toLocaleString() : null,
+        time_crossed
+          ? new Date(time_crossed).toLocaleString().toUpperCase()
+          : null,
       ]
     );
     const doc = new jsPDF({ orientation: "portrait" });
@@ -34,7 +43,9 @@ function GetAllParticipantsButton() {
       align: "center",
     });
     autoTable(doc, {
-      head: [["Unique Code", "Name", "Email", "Phone Number", "Time Crossed"]],
+      head: [
+        ["Unique Code", "Name", "Category", "Phone Number", "Time Crossed"],
+      ],
       body: bodyValues,
       theme: "striped",
       startY: 30,

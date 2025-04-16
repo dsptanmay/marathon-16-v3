@@ -5,19 +5,18 @@ import { eq, or, sql } from "drizzle-orm";
 
 const participantsHandler = new Hono()
   .get("/all/boys", async (c) => {
-  const res = await db
-  .select({
-    unique_code: masterTable.unique_code,
-    name: sql<string>`TRIM(${masterTable.name})`,
-    email: sql<string>`TRIM(${masterTable.email})`,
-    phone_no: sql<string>`TRIM(${masterTable.phone_no})`,
-    time_crossed: masterTable.crossTime,
-  })
-  .from(masterTable)
-  .where(eq(masterTable.category, "boys"))
-  .orderBy(sql`TRIM(${masterTable.name})`);
+    const res = await db
+      .select({
+        unique_code: masterTable.unique_code,
+        name: sql<string>`TRIM(${masterTable.name})`,
+        email: sql<string>`TRIM(${masterTable.email})`,
+        phone_no: sql<string>`TRIM(${masterTable.phone_no})`,
+        time_crossed: masterTable.crossTime,
+      })
+      .from(masterTable)
+      .where(eq(masterTable.category, "boys"))
+      .orderBy(sql`TRIM(${masterTable.name})`);
 
-    
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
@@ -72,21 +71,20 @@ const participantsHandler = new Hono()
     if (res.length === 0) return c.json({ error: "No records found!" }, 404);
     return c.json({ data: res }, 200);
   })
-  .get("/all", async (c) => {
-      const res = await db
-          .select({
-            unique_code: masterTable.unique_code,
-            name: masterTable.name,
-            email: masterTable.email,
-            phone_no: masterTable.phone_no,
-            time_crossed: masterTable.crossTime,
-          })
-          .from(masterTable)
-          .orderBy(masterTable.name);
-      if (res.length === 0) 
-        return c.json({ error: "No records found!" }, 404);
-      return c.json({ data: res }, 200);
-    })
+  .get("/", async (c) => {
+    const res = await db
+      .select({
+        unique_code: masterTable.unique_code,
+        name: masterTable.name,
+        category: masterTable.category,
+        phone_no: masterTable.phone_no,
+        time_crossed: masterTable.crossTime,
+      })
+      .from(masterTable)
+      .orderBy(masterTable.name);
+    if (res.length === 0) return c.json({ error: "No records found!" }, 404);
+    return c.json({ data: res }, 200);
+  })
   .get("/top20/boys", async (c) => {
     const res = await db
       .select({
