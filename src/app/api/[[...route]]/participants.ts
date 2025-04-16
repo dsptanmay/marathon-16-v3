@@ -86,8 +86,7 @@ const participantsHandler = new Hono()
       if (res.length === 0) 
         return c.json({ error: "No records found!" }, 404);
       return c.json({ data: res }, 200);
-    };
-  )
+    })
   .get("/top20/boys", async (c) => {
     const res = await db
       .select({
